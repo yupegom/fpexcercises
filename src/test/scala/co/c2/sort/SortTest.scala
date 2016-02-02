@@ -11,7 +11,7 @@ class SortTest extends FunSuite {
 
   test("array = Array(\"A\", \"B\", \"C\") is sorted"){
     val array = Array("A", "B", "C")
-    val result = Sort.isSorted(array, ordered)
+    val result = Sort.isSorted(array, (itemA: String, itemB: String) => itemA < itemB)
     assert(result)
   }
 
