@@ -73,16 +73,42 @@ object List { // `List` companion object. Contains functions for creating and wo
       case Nil => Nil 
       case Cons(x, xs) => 
         if(f(x))
-          dropWhile(drop(l,1), f)
+          dropWhile(xs, f)
         else
           l
     }
 
-  def init[A](l: List[A]): List[A] = sys.error("todo")
+  def init[A](l: List[A]): List[A] = {
+    def aux(listR: List[A], list: List[A]): List[A] = {
+      list match {
+        case Nil => Nil
+        case Cons(x, Nil) => drop(listR, 1)
+        case Cons(x, xs) => aux(append(drop(listR, 1), Cons(x, Nil)), xs)
+      }
+    }
+    aux(l, l)
+  }
 
-  def length[A](l: List[A]): Int = sys.error("todo")
+  def length[A](l: List[A]): Int = 
+    foldRight(l, 0)((x,y) => y+1)
 
-  def foldLeft[A,B](l: List[A], z: B)(f: (B, A) => B): B = sys.error("todo")
+  @annotation.tailrec 
+  def foldLeft[A,B](l: List[A], z: B)(f: (B, A) => B): B = {
+    l match {
+      case Nil => z
+      case Cons(x, xs) => foldLeft(xs, f(z, x))(f) 
+    }
+  }
+
+  def sumFL(ns: List[Int]) =
+    foldLeft(ns, 0)((x,y) => x + y)
+
+  def productFL(ns: List[Double]) =
+    foldLeft(ns, 1.0)(_ * _) // `_ * _` is more concise notation for `(x,y) => x * y`; see sidebar
+
+  def reverse[A](ns: List[A]): List[A] = {
+    foldLeft(ns, Nil)((x,y) => append(reverse(x),List(y)))
+  }
 
   def map[A,B](l: List[A])(f: A => B): List[B] = sys.error("todo")
 }

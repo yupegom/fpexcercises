@@ -33,7 +33,42 @@ class ListTest extends FunSuite {
   }
 
   test("dropWhile in List(1,2,3,4,5) x==1 should match List(2,3,4,5)"){
-    assert(dropWhile(List(1,2,3,4,5), a:Int => a == 1) == List(2,3,4,5))
+    assert(dropWhile(List(1,2,3,4,5), (a:Int) => a == 1) == List(2,3,4,5))
   }
+
+  test("dropWhile in List(2,4,5) x%2 should match List(5)"){
+    assert(dropWhile(List(2,4,5), (a:Int) => a % 2 == 0) == List(5))
+  }
+  
+  test("init in List(2,4,5) should match List(2,4)"){
+    assert(init(List(2,4,5)) == List(2,4))
+  }
+  
+  test("init in List(2,4,5,6,7,8) should match List(2,4,5,6,7)"){
+    assert(init(List(2,4,5,6,7,8)) == List(2,4,5,6,7))
+  }
+  
+  test("length List(2) = 1"){
+    assert(length(List(2)) == 1)
+  }
+
+  test("length List(2,1,3,4) = 4"){
+    assert(length(List(2,1,3,4)) == 4)
+  } 
+ 
+  test("foldLeft List(2)  + = 2"){
+    assert(foldLeft(List(2),0)(_+_) == 2)
+  }
+ 
+  test("foldLeft List(2,3,4,5,6,7)  + = 27"){
+    assert(foldLeft(List(2,3,4,5,6,7),0)(_+_) == 27)
+  }
+
+  test("foldLeft List(2,3,4,5,6,7)  * = 5040"){
+    assert(foldLeft(List(2,3,4,5,6,7),1)(_*_) == 5040)
+  }
+
+
+
 
 }
