@@ -68,6 +68,9 @@ class ListTest extends FunSuite {
     assert(foldLeft(List(2,3,4,5,6,7),1)(_*_) == 5040)
   }
 
+  test("reverse List(2,3,4,5,6,7) = List(7,6,5,4,3,2)"){
+    assert(reverse(List(2,3,4,5,6,7)) == List(7,6,5,4,3,2))
+  }
 
 
 

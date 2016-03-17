@@ -96,7 +96,7 @@ object List { // `List` companion object. Contains functions for creating and wo
   def foldLeft[A,B](l: List[A], z: B)(f: (B, A) => B): B = {
     l match {
       case Nil => z
-      case Cons(x, xs) => foldLeft(xs, f(z, x))(f) 
+      case Cons(x, xs) => foldLeft(xs, f(z,x))(f) 
     }
   }
 
@@ -107,7 +107,7 @@ object List { // `List` companion object. Contains functions for creating and wo
     foldLeft(ns, 1.0)(_ * _) // `_ * _` is more concise notation for `(x,y) => x * y`; see sidebar
 
   def reverse[A](ns: List[A]): List[A] = {
-    foldLeft(ns, Nil)((x,y) => append(reverse(x),List(y)))
+    foldLeft(ns, Nil:List[A])((x,y) => append(List(y), x))
   }
 
   def map[A,B](l: List[A])(f: A => B): List[B] = sys.error("todo")
