@@ -72,6 +72,11 @@ class ListTest extends FunSuite {
     assert(reverse(List(2,3,4,5,6,7)) == List(7,6,5,4,3,2))
   }
 
+  test("append List(2,3) List(4,5) = List(2,3,4,5)"){
+    assert(appendByUsingFoldLeft(List(2,3), List(4,5)) == List(2,3,4,5))
+  }
 
-
+  test("append List(2,3,4,5) List(4,5,6,7,8) = List(2,3,4,5,4,5,6,7,8)"){
+    assert(appendByUsingFoldLeft(List(2,3,4,5), List(4,5,6,7,8)) == List(2,3,4,5,4,5,6,7,8))
+  }
 }
