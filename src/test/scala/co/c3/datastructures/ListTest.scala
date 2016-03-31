@@ -87,4 +87,12 @@ class ListTest extends FunSuite {
   test("map List(1,2,3) (_.toInteger) = List(1,2,3)"){
     assert(map(List("1","2","3"))(_.toInt) == List(1,2,3))
   }
+
+  test("filter List(1,2,3) (_ %2 != 0) = List(2)"){
+    assert(filter(List(1,2,3))(_%2 != 0) == List(2,3))
+  }
+
+  test("filter List(2,3,4,5) (_ %2 != 0) = List(22)"){
+    assert(filter(List(1,2,3))(_%2 != 0) == List(2,3))
+  }
 }
