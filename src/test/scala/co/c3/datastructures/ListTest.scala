@@ -79,4 +79,12 @@ class ListTest extends FunSuite {
   test("append List(2,3,4,5) List(4,5,6,7,8) = List(2,3,4,5,4,5,6,7,8)"){
     assert(appendByUsingFoldLeft(List(2,3,4,5), List(4,5,6,7,8)) == List(2,3,4,5,4,5,6,7,8))
   }
+
+  test(" map List(2,3) (_ + 1) = List(3,4)"){
+    assert(map(List(2,3))(_ + 1) == List(3,4))
+  }
+
+  test("map List(1,2,3) (_.toInteger) = List(1,2,3)"){
+    assert(map(List("1","2","3"))(_.toInt) == List(1,2,3))
+  }
 }
