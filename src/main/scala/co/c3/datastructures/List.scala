@@ -123,9 +123,11 @@ object List { // `List` companion object. Contains functions for creating and wo
     case Cons(h,t) => Cons(f(h), map(t)(f))
   }
 
-  @annotation.tailrec
-  def filter[A](as: List[A])(f: A => Boolean): List[A] = as match {
-    case Nil => Nil 
-    case Cons(h,t) => if(f(h)) t else filter(t)(f)
+  def filter[A](as: List[A])(f: A => Boolean): List[A] = {
+    foldRight(as, Nil:List[A])((x,y) => if(f(x)) Cons(x,y) else y)
+  }
+
+  def concat[A](l: List[List[A]]): List[A] = {
+    foldLeft[List[A], List[A]](l, Nil)((x,y) => append(x,y))
   }
 }

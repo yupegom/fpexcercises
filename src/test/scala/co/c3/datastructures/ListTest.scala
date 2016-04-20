@@ -89,10 +89,18 @@ class ListTest extends FunSuite {
   }
 
   test("filter List(1,2,3) (_ %2 != 0) = List(2)"){
-    assert(filter(List(1,2,3))(_%2 != 0) == List(2,3))
+    assert(filter(List(1,2,3))(_%2 == 0) == List(2))
   }
 
-  test("filter List(2,3,4,5) (_ %2 != 0) = List(22)"){
-    assert(filter(List(1,2,3))(_%2 != 0) == List(2,3))
+  test("filter List(2,3,4,5) (_ %2 != 0) = List(2)"){
+    assert(filter(List(2,3,4,5))(_%2 == 0) == List(2,4))
+  }
+
+  test("concat List(List(1), List(2)) = List(1,2)"){
+    assert(concat(List(List(1), List(2))) == List(1,2))
+  }
+
+  test("concat List(List(1,2,3), List(2,3,4), List(3,6,8)) = List(1,2,3,2,3,4,3,6,8)"){
+    assert(concat(List(List(1,2,3), List(2,3,4), List(3,6,8))) == List(1,2,3,2,3,4,3,6,8))
   }
 }
