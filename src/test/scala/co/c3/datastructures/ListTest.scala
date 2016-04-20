@@ -100,6 +100,10 @@ class ListTest extends FunSuite {
     assert(concat(List(List(1), List(2))) == List(1,2))
   }
 
+  test("flatMap(List(1,2,3))(i => List(i,i)) == List(1,1,2,2,3,3"){
+    assert(flatMap(List(1,2,3))(i => List(i,i)) == List(1,1,2,2,3,3))
+  }
+
   test("concat List(List(1,2,3), List(2,3,4), List(3,6,8)) = List(1,2,3,2,3,4,3,6,8)"){
     assert(concat(List(List(1,2,3), List(2,3,4), List(3,6,8))) == List(1,2,3,2,3,4,3,6,8))
   }

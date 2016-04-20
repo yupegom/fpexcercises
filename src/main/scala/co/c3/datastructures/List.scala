@@ -130,4 +130,12 @@ object List { // `List` companion object. Contains functions for creating and wo
   def concat[A](l: List[List[A]]): List[A] = {
     foldLeft[List[A], List[A]](l, Nil)((x,y) => append(x,y))
   }
+
+  def flatMap[A,B](l: List[A])(f: A => List[B]): List[B] = {
+    concat(map[A, List[B]](l)(f))
+  }
+
+  def filterByFlatMap[A](as: List[A])(f: A => Boolean): List[A] = {
+    flatMap(as:List[A])(x => if(f(x)) Cons(x,y) else y )
+  }
 }
