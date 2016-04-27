@@ -107,4 +107,8 @@ class ListTest extends FunSuite {
   test("concat List(List(1,2,3), List(2,3,4), List(3,6,8)) = List(1,2,3,2,3,4,3,6,8)"){
     assert(concat(List(List(1,2,3), List(2,3,4), List(3,6,8))) == List(1,2,3,2,3,4,3,6,8))
   }
+
+  test("filterByFlatMap List(2,3,4,5) (_ %2 != 0) = List(2)"){
+    assert(filterByFlatMap(List(2,3,4,5))(_%2 == 0) == List(2,4))
+  }
 }
